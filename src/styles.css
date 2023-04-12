@@ -1,0 +1,154 @@
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+.sidebar {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all ease-in 0.2s;
+}
+
+.sidebar.opened {
+    width: 250px;
+}
+
+.sidebar.closed {
+    width: 60px;
+}
+
+.sidebar .menu-header {
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+}
+
+.sidebar .menu-header .logo-container {
+    text-align: left;
+}
+
+.sidebar .menu-header .logo {
+    height: 30px;
+    width: 100%;
+    transition: width ease-in 0.2s;
+}
+
+.sidebar.closed .menu-header .logo {
+    width: 0;
+}
+
+.sidebar .menu-header .menu-toggle {
+    cursor: pointer;
+    color: #fff;
+    stroke: #fff;
+    font-size: 30px;
+    flex-shrink: 0;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sidebar .user-details {
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.sidebar .details-container {
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar .user-details .user-avatar {
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid;
+    transition: all ease-in 0.2s;
+}
+
+.sidebar.closed .user-details .user-avatar {
+    height: 28px;
+    width: 28px;
+    border-radius: 10px;
+}
+
+.sidebar .user-details .user-name {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar .user-details .logout {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.sidebar .user-details h4,
+.sidebar .user-details p {
+    margin: 0;
+    text-align: left;
+}
+
+.sidebar .user-details p {
+    font-size: 12px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.sidebar ul li a .menu-item-tooltip {
+    position: absolute;
+    padding: 10px 20px;
+    left: 65px;
+    border-radius: 5px;
+    display: none;
+}
+
+.sidebar ul li a:hover .menu-item-tooltip {
+    display: block;
+}
+
+.menu-icon {
+    color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar {
+        position: absolute;
+    }
+
+    .sidebar.opened {
+        width: 250px;
+        left: 0;
+    }
+
+    .sidebar.closed {
+        width: 250px;
+        left: -250px;
+    }
+}
