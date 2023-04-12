@@ -8,9 +8,24 @@ React Custom Sidebar is a fully customizable sidebar component for React.
 - Dedicated logout button
 - Auto adjusted on mobile devices to 'Over content' mode
 
-[Live Example]()
 
-Screenshots
+### Screenshots
+
+desktop view
+
+![screen 1](https://raw.githubusercontent.com/vijaykumawat897/react-custom-sidebar/master/images/screen1.png)
+
+desktop view menu closed
+
+![screen 2](https://raw.githubusercontent.com/vijaykumawat897/react-custom-sidebar/master/images/screen2.png)
+
+mobile view menu opened
+
+![screen 3](https://raw.githubusercontent.com/vijaykumawat897/react-custom-sidebar/master/images/screen3.png)
+
+light theme
+
+![screen 5](https://raw.githubusercontent.com/vijaykumawat897/react-custom-sidebar/master/images/screen5.png)
 
 ### Installation
 
