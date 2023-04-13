@@ -2,11 +2,12 @@
 
 React Custom Sidebar is a fully customizable sidebar component for React.
 - Can be used a docked or over content.
-- Docked version has open and close state where you can easly customise width for both states.
+- Docked version has open and close state.
 - Fully customizabe light and dark theme option.
 - User profile section.
 - Dedicated logout button
 - Auto adjusted on mobile devices to 'Over content' mode
+- Custom styles supported
 
 
 ### Screenshots
@@ -126,6 +127,7 @@ export default App;
 
 | Property name      | Type                      | Default              | Description                                                                                                                                                              |
 | ------------------ | ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| docked           | boolean | true for desktop/tablet and false for mobiles                  | If the sidebar is docked with main content or float over it  
 | menuItems           | array of objects | Empty array                  | The list of menu items to be rendered                                                                                                                                                         |
 | logoUrl      | string                    | NULL                  | Logo url                                                                                                                                  |
 | theme   | string                    | dark                  | light/dark                                                                                                                                   |
@@ -188,7 +190,7 @@ Custom styles can be passed as an object with these keys:
     toggleIcon: { /* for hamburger menu icon */},
     menuItem: { /* for menu logo and text container */},
     menuItemIcon: { /* for menu item logo */},
-    menuIconText: { /* for menu item text */},
+    menuItemText: { /* for menu item text */},
     userContainer: { /* for  user details container */},
     username: { /* for username text */},
     avatar: { /* for user avatar */},

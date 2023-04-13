@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles.css";
 import { FiMenu } from "react-icons/fi";
 import { BiLogOut } from "react-icons/bi";
@@ -33,21 +33,25 @@ function Sidebar({
   showToggleButton = true,
   handleSidebarToggle,
   showTooltipOnClose = true,
+  docked = true,
+  styles = {},
 }) {
   const location = useLocation();
   const themeColor = themeColors[theme];
   const [isMenuOpen, setIsMenuOpen] = useState(isSidebarOpened);
-  const [isMobileWidth, setIsMobileWidth] = useState(false);
+  const [isFloating, setIsFloating] = useState(!docked);
+  const dockedRef = useRef(docked);
 
   useEffect(() => {
     const { innerWidth: width } = window;
     if (width <= 600) {
-      setIsMobileWidth(true);
+      setIsFloating(true);
     }
     window.addEventListener("resize", handleResize, true);
     return () => {
       window.removeEventListener("resize", handleResize, true);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -59,16 +63,26 @@ function Sidebar({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    dockedRef.current = docked;
+    setIsFloating(!docked);
+    if (docked) {
+      setIsMenuOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [docked]);
+
   const handleResize = (event) => {
     if (event.target.innerWidth <= 768) {
       setIsMenuOpen(false);
-    } else {
-      setIsMenuOpen(true);
     }
     if (event.target.innerWidth <= 600) {
-      setIsMobileWidth(true);
+      setIsFloating(true);
     } else {
-      setIsMobileWidth(false);
+      setIsFloating(!dockedRef.current);
+      if (dockedRef.current) {
+        setIsMenuOpen(event.target.innerWidth > 768);
+      }
     }
   };
 
@@ -88,30 +102,44 @@ function Sidebar({
   return (
     <div className="main-container">
       <div
-        className={`${isMenuOpen ? "opened" : "closed"} sidebar`}
-        style={{ background: themeColor.bgColor }}
+        className={`${isMenuOpen ? "opened" : "closed"} sidebar ${
+          isFloating ? "floating" : ""
+        } `}
+        style={{
+          ...styles.sidebar,
+          background: styles?.sidebar?.background || themeColor.bgColor,
+        }}
       >
         <div className="menu-header">
           <div className="logo-container">
-            {logoUrl ? <img className="logo" src={logoUrl} alt="logo" /> : null}
+            {logoUrl ? (
+              <img
+                className="logo"
+                style={styles.logo}
+                src={logoUrl}
+                alt="logo"
+              />
+            ) : null}
           </div>
-          {showToggleButton && !isMobileWidth ? (
+          {showToggleButton && !isFloating ? (
             <FiMenu
               className="menu-toggle"
               onClick={() => handleMenuToggle()}
               style={{
-                stroke: themeColor.textColor,
-                fill: themeColor.textColor,
+                ...styles.toggleIcon,
+                stroke: styles?.toggleIcon?.stroke || themeColor.textColor,
+                fill: styles?.toggleIcon?.fill || themeColor.textColor,
               }}
             />
           ) : null}
-          {isMobileWidth ? (
+          {isFloating ? (
             <MdClose
               className="menu-toggle"
               onClick={() => handleMenuToggle()}
               style={{
-                stroke: themeColor.textColor,
-                fill: themeColor.textColor,
+                ...styles.toggleIcon,
+                stroke: styles?.toggleIcon?.stroke || themeColor.textColor,
+                fill: styles?.toggleIcon?.fill || themeColor.textColor,
               }}
             />
           ) : null}
@@ -127,10 +155,12 @@ function Sidebar({
                       location.pathname === item.link ? "active" : ""
                     } `}
                     style={{
-                      color: themeColor.textColor,
+                      ...styles.menuItem,
+                      color: styles?.menuItem?.color || themeColor.textColor,
                       background:
                         location.pathname === item.link
-                          ? themeColor.highlights
+                          ? styles?.menuItem?.background ||
+                            themeColor.highlights
                           : null,
                     }}
                     onMouseEnter={mouseEnter}
@@ -139,12 +169,19 @@ function Sidebar({
                       closeOnLinkClick ? setIsMenuOpen(false) : null
                     }
                   >
-                    <div>{item.icon}</div>
-                    {isMenuOpen ? <div>{item.title}</div> : null}
-                    {!isMenuOpen && !isMobileWidth && showTooltipOnClose ? (
+                    <div style={styles.menuItemIcon}>{item.icon}</div>
+                    {isMenuOpen ? (
+                      <div style={styles.menuItemText}>{item.title}</div>
+                    ) : null}
+                    {!isMenuOpen && !isFloating && showTooltipOnClose ? (
                       <div
                         className="menu-item-tooltip"
-                        style={{ background: themeColor.bgColor }}
+                        style={{
+                          ...styles.menuItemTooltip,
+                          background:
+                            styles?.menuItemTooltip?.background ||
+                            themeColor.bgColor,
+                        }}
                       >
                         {item.title}
                       </div>
@@ -158,8 +195,10 @@ function Sidebar({
             <div
               className="user-details"
               style={{
-                color: themeColor.textColor,
-                background: themeColor.highlights,
+                ...styles.userContainer,
+                color: styles?.userContainer?.color || themeColor.textColor,
+                background:
+                  styles?.userContainer?.background || themeColor.highlights,
               }}
             >
               <div className="details-container">
@@ -170,19 +209,29 @@ function Sidebar({
                   }
                   alt="user-avatar"
                   className="user-avatar"
-                  style={{ borderColor: themeColor.textColor }}
+                  style={{
+                    ...styles.avatar,
+                    borderColor:
+                      styles?.avatar?.borderColor || themeColor.textColor,
+                  }}
                 />
                 {isMenuOpen && userDetails.name ? (
                   <div className="user-name">
-                    <h4>{userDetails.name}</h4>
+                    <h4 style={styles.username}>{userDetails.name}</h4>
                     {userDetails.description ? (
-                      <p>{userDetails.description}</p>
+                      <p style={styles.userDescription}>
+                        {userDetails.description}
+                      </p>
                     ) : null}
                   </div>
                 ) : null}
               </div>
               {isMenuOpen && showLogout ? (
-                <BiLogOut className="logout" onClick={handleLogout} />
+                <BiLogOut
+                  className="logout"
+                  style={styles.logout}
+                  onClick={handleLogout}
+                />
               ) : null}
             </div>
           ) : null}

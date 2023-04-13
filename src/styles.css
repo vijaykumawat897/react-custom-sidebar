@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     transition: all ease-in 0.2s;
+    flex-shrink: 0;
 }
 
 .sidebar.opened {
@@ -15,7 +16,21 @@
 }
 
 .sidebar.closed {
-    width: 60px;
+    width: 60px !important;
+}
+
+.sidebar.floating {
+    position: absolute;
+}
+
+.sidebar.floating.opened {
+    width: 250px;
+    left: 0;
+}
+
+.sidebar.floating.closed {
+    width: 250px;
+    left: -250px;
 }
 
 .sidebar .menu-header {
@@ -31,7 +46,7 @@
 }
 
 .sidebar .menu-header .logo {
-    height: 30px;
+    height: 45px;
     width: 100%;
     transition: width ease-in 0.2s;
 }
@@ -135,20 +150,4 @@
 
 .menu-icon {
     color: #fff;
-}
-
-@media only screen and (max-width: 600px) {
-    .sidebar {
-        position: absolute;
-    }
-
-    .sidebar.opened {
-        width: 250px;
-        left: 0;
-    }
-
-    .sidebar.closed {
-        width: 250px;
-        left: -250px;
-    }
 }
