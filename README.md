@@ -140,6 +140,7 @@ export default App;
 | showToggleButton        | boolean                   | true                 | If hamburger menu icon visible                                                                                                                                       |
 | handleSidebarToggle              | function                   | n/a                 |                                                        Callback called when the sidebar status changed from hamburger menu icon                                                                               |
 | showTooltipOnClose   | boolean                    | true                  | If tooltip visible in closed state.                                                                                         |
+| styles   | object                    | empty object                  | Custom styles.                                                                                         |
 
 
 ### Default theme colors                                              
