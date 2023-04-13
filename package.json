@@ -7,7 +7,30 @@
     "build": "npx babel src --out-dir dist --copy-files",
     "start": "npx babel src --watch --out-dir dist"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vijaykumawat897/react-custom-sidebar"
+  },
+  "keywords": [
+    "react",
+    "sidebar",
+    "react-sidebar",
+    "custom-sidebar",
+    "sidemenu",
+    "side-menu",
+    "react-custom-sidebar",
+    "react-menu",
+    "floating-sidemenu",
+    "floating-menu",
+    "docked",
+    "docked-mene",
+    "docked-sidebar"
+  ],
+  "bugs": {
+    "url": "https://github.com/vijaykumawat897/react-custom-sidebar/issues"
+  },
+  "homepage": "https://github.com/vijaykumawat897/react-custom-sidebar#readme",
+  "author": "viay kumawat",
   "license": "ISC",
   "peerDependencies": {
     "react": "^18.2.0",
