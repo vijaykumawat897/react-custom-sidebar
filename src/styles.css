@@ -51,6 +51,11 @@
     transition: width ease-in 0.2s;
 }
 
+.sidebar .menu-header .logo-small {
+    height: auto;
+    max-height: 30px;
+}
+
 .sidebar.closed .menu-header .logo {
     width: 0;
 }
@@ -150,4 +155,9 @@
 
 .menu-icon {
     color: #fff;
+}
+
+.main-content-container {
+    width: 100%;
+    overflow-y: auto;
 }

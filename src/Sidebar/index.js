@@ -23,6 +23,7 @@ function Sidebar({
   children,
   menuItems,
   logoUrl,
+  logoSmallUrl,
   theme = "light",
   themeColors = defaultThemeColors,
   showLogout = false,
@@ -111,15 +112,26 @@ function Sidebar({
         }}
       >
         <div className="menu-header">
-          <div className="logo-container">
-            {logoUrl ? (
+          <div className="logo-container" style={styles.logoContainer}>
+            {!showToggleButton && logoSmallUrl && !isMenuOpen && !isFloating ? (
               <img
-                className="logo"
+                className="logo logo-small"
                 style={styles.logo}
-                src={logoUrl}
+                src={logoSmallUrl}
                 alt="logo"
               />
-            ) : null}
+            ) : (
+              <>
+                {logoUrl ? (
+                  <img
+                    className="logo"
+                    style={{ ...styles.logo, ...styles.logoSmall }}
+                    src={logoUrl}
+                    alt="logo"
+                  />
+                ) : null}
+              </>
+            )}
           </div>
           {showToggleButton && !isFloating ? (
             <FiMenu
@@ -237,7 +249,15 @@ function Sidebar({
           ) : null}
         </div>
       </div>
-      {children}
+      <div
+        className="main-content-container"
+        style={styles.mainContentContainer}
+        onClick={() => {
+          isMenuOpen && handleMenuToggle();
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 }

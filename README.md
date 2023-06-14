@@ -91,12 +91,13 @@ function App() {
           menuItems={menuItems}
           theme="light"
           logoUrl="add logo url here"
+          logoSmallUrl="add small logo url here which will be visible in closed state"
           themeColors={defaultThemeColors}
           showLogout={true}
           handleLogout={handleLogout}
           userDetails={{
             name: "User name",
-            description: "designation", // 
+            description: "designation",
             avatar: "add user avatart url here",
           }}
           closeOnLinkClick={false}
@@ -129,7 +130,8 @@ export default App;
 | ------------------ | ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | docked           | boolean | true for desktop/tablet and false for mobiles                  | If the sidebar is docked with main content or float over it  
 | menuItems           | array of objects | Empty array                  | The list of menu items to be rendered                                                                                                                                                         |
-| logoUrl      | string                    | NULL                  | Logo url                                                                                                                                  |
+| logoUrl      | string                    | NULL                  | Logo url                
+| logoSmallUrl      | string                    | NULL                  | Small Logo for closed state, only visible if showToggleButton is false  url                                                                                                                                  |
 | theme   | string                    | dark                  | light/dark                                                                                                                                   |
 | themeColors   | object                    | default colors               | Theme colors                                                                                                                                       |
 | showLogout   | boolean                    | false                 | To show/hide logout button                                                                                                                                  |
@@ -187,7 +189,9 @@ Custom styles can be passed as an object with these keys:
 ```jsx
 {
     sidebar : { /* for main container */},
+    logoContainer: {/* for logo container */},
     logo: { /* for logo icon */},
+    logoSmall: { /* for small logo icon */},
     toggleIcon: { /* for hamburger menu icon */},
     menuItem: { /* for menu logo and text container */},
     menuItemIcon: { /* for menu item logo */},
@@ -197,6 +201,7 @@ Custom styles can be passed as an object with these keys:
     avatar: { /* for user avatar */},
     userDescription: { /* for user description text */},
     logout: { /* for logout icon */},
+    mainContentContainer: { /* for main content outside the sidebar */}
 }
 ``` 
 
