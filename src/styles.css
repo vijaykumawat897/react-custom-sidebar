@@ -56,7 +56,7 @@
     max-height: 30px;
 }
 
-.sidebar.closed .menu-header .logo {
+.sidebar.closed .menu-header .logo:not(.logo-small) {
     width: 0;
 }
 
