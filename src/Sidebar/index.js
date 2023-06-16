@@ -30,6 +30,7 @@ function Sidebar({
   handleLogout,
   userDetails = null,
   closeOnLinkClick = false,
+  closeOnOutsideClick = false,
   isSidebarOpened = true,
   showToggleButton = true,
   handleSidebarToggle,
@@ -253,7 +254,7 @@ function Sidebar({
         className="main-content-container"
         style={styles.mainContentContainer}
         onClick={() => {
-          isMenuOpen && handleMenuToggle();
+          isMenuOpen && isFloating && closeOnOutsideClick && handleMenuToggle();
         }}
       >
         {children}

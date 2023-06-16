@@ -101,6 +101,7 @@ function App() {
             avatar: "add user avatart url here",
           }}
           closeOnLinkClick={false}
+          closeOnOutsideClick={false}
           isSidebarOpened={isMenuOpen}
           handleSidebarToggle={setIsMenuOpened}
           showToggleButton={true}
@@ -138,6 +139,7 @@ export default App;
 | handleLogout            | function | NULL                  | Logout button click listener                                                                                                                                                       |
 | userDetails          | object                  | NULL                  | User details to be shown in sidebar.              |
 | closeOnLinkClick             | boolean                   | false                | To close the sidebar on menu item click                                                                                                                                  |
+| closeOnOutsideClick             | boolean                   | false                | To close the sidebar on outside click on docked state or mobile view                                                                                                                                  |
 | isSidebarOpened               | boolean                   | true                | If the sidebar should be open                                                                                                                                            |
 | showToggleButton        | boolean                   | true                 | If hamburger menu icon visible                                                                                                                                       |
 | handleSidebarToggle              | function                   | n/a                 |                                                        Callback called when the sidebar status changed from hamburger menu icon                                                                               |
